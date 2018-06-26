@@ -34,6 +34,7 @@ class Request
     		$path = explode('/', $url);
 		}
 		
+		var_dump($path);
         if(count($path) == 3) {
             $this->controller = $path[1];
             $this->action = $path[2];
@@ -41,17 +42,15 @@ class Request
             $this->controller = $path[1];
         }
 		if(empty($path[1])) {
-			$path[1] = 'index';
+			$path[1] = 'authorisation';
 		}
 		if(empty($path[2])) {
-			$path[2] = '';
+			$path[2] = 'index';
 		}
 		// Получение инф-ии о запрошенной странице
 		
-		
-		
-		
-		$page_content = file_get_contents (__DIR__ . '/../templates' . /* implode('/', $path) */"/index" . '.tmpl');
+		$page_content = file_get_contents (__DIR__ . '/../templates' . implode('/', $path) . '.tmpl');
+		var_dump($page_content);
 		preg_match_all( "|<title>(.*)</title>|sUSi", $page_content, $title);
 		if (empty($title)) {
 			$title = $_SERVER['REQUEST_URI'];
