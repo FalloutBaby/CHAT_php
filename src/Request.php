@@ -2,8 +2,6 @@
 
 namespace MyApp;
 
-use Controllers\PublicController;
-
 class Request
 {
     protected $controller = 'index';

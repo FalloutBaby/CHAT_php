@@ -14,7 +14,6 @@ class PublicController extends Controller
         if(Auth::check()) {
             echo " Привет, " . $_SESSION['user'] . "! ";
         }
-		var_dump("hey, imma here!");
         $accountModel = new Account();
 
         $user = new User;

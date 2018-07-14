@@ -2,7 +2,7 @@
 
 namespace MyApp;
 
-// use components\renderer\TwigRenderer;
+use MyApp\renderer\TwigRenderer;
 
 class Controller 
 {

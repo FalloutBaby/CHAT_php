@@ -2,11 +2,12 @@
     "autoload": {
         "psr-4": {
             "MyApp\\": "src",
-			"Controllers\\": "controllers"
+			"Controllers\\": "controllers",
+			"Models\\": "models"
         }
     },
     "require": {
         "cboden/ratchet": "^0.4.1",
-        "twig/twig": "^2.4"
+        "twig/twig": "2.0"
     }
 }

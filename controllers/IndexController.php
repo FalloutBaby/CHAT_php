@@ -4,8 +4,8 @@ namespace Controllers;
 
 use MyApp\Auth;
 use MyApp\Controller;
-use models\Account;
-use models\User;
+use Models\Account;
+use Models\User;
 
 class IndexController extends Controller
 {
@@ -14,7 +14,6 @@ class IndexController extends Controller
         if(Auth::check()) {
             echo " Привет, " . $_SESSION['user'] . "! ";
         }
-		var_dump("hey, imma here!");
         $accountModel = new Account();
 
         $user = new User;
@@ -26,6 +25,6 @@ class IndexController extends Controller
         ];
         $account = $accountModel->getAccount();
 
-        $this->render('authorisation/index', ['account' => $account,]);
+        $this->render('public/index', ['account' => $account,]);
     }
 }
