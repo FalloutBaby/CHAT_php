@@ -1,0 +1,13 @@
+.user_name {
+	color: #00529B;
+	display: inline-block;
+}
+
+.message_inc {
+	color: #4F8A10;
+	display: inline-block;
+}
+
+body {
+	background: lightgray;
+}
