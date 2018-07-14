@@ -4,9 +4,7 @@ conn.onopen = function(e) {
 };
 
 conn.onmessage = function(e) {
-    console.log(e.data);
-	
 	var messages = JSON.parse(e.data);
-	$('#chat_output').append(template(messages[i]));
+	$('#chat_output').append("<h4 class='user_name'>"+messages['user']+"</h4><p class='message_inc'>"+messages['text']+"</p>");
 	scroll();
 };
