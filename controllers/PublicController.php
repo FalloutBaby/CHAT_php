@@ -4,10 +4,10 @@ namespace Controllers;
 
 use MyApp\Auth;
 use MyApp\Controller;
-use models\Account;
-use models\User;
+use Models\Account;
+use Models\User;
 
-class IndexController extends Controller
+class PublicController extends Controller
 {
     public function actionIndex()
     {
@@ -26,6 +26,6 @@ class IndexController extends Controller
         ];
         $account = $accountModel->getAccount();
 
-        $this->render('authorisation/index', ['account' => $account,]);
+        $this->render('public/index', ['account' => $account,]);
     }
 }

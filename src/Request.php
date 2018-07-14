@@ -2,11 +2,13 @@
 
 namespace MyApp;
 
+use Controllers\PublicController;
+
 class Request
 {
     protected $controller = 'index';
     protected $action = 'index';
-    protected $controllerNamespace = 'controllers';
+    protected $controllerNamespace = 'Controllers';
     public $inputArr = [
         'get' => [],
         'post' => [],
@@ -34,8 +36,7 @@ class Request
     		$path = explode('/', $url);
 		}
 		
-		var_dump($path);
-        if(count($path) == 3) {
+        if(count($path) == 3 && !empty($path[2])) {
             $this->controller = $path[1];
             $this->action = $path[2];
         } elseif (count($path) == 2 && !empty($path[1])) {
@@ -50,7 +51,7 @@ class Request
 		// Получение инф-ии о запрошенной странице
 		
 		$page_content = file_get_contents (__DIR__ . '/../templates' . implode('/', $path) . '.tmpl');
-		var_dump($page_content);
+		
 		preg_match_all( "|<title>(.*)</title>|sUSi", $page_content, $title);
 		if (empty($title)) {
 			$title = $_SERVER['REQUEST_URI'];
