@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./css/catalog_style.css">
+    <title>ЧАТ | Вход</title>
+	<script src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+<script type="text/javascript" src="js/window.js"></script>
+<script>
+document.onready(function () {
+    text = $('#chat_input');
+    $('#submit').submit(function (event) {
+        // Когда нажат Enter, отправляем сообщение.
+        conn.send(text.val());
+
+        // Очищаем поле ввода.
+        text.val('');
+
+        // Отменяем отправку формы.
+        return false;
+    });
+	
+	conn.onmessage = function(e) {
+    console.log(e.data);
+	$('#chat_output').append(e.data);
+	scroll();
+	};
+    scroll();
+});
+</script>
+<div id="chat_output"></div>
+<input id="chat_input" placeholder="Введите сообщение..."/>
+<input id="submit" type="submit"/>
+
+</body>
+</html>
