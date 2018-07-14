@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "MyApp\\": "src"
+            "MyApp\\": "src",
+			"Controllers\\": "controllers"
         }
     },
     "require": {
