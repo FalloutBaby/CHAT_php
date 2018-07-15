@@ -41,7 +41,7 @@ class Request
             $this->controller = $path[1];
         }
 		if(empty($path[1])) {
-			$path[1] = 'authorisation';
+			$path[1] = 'public';
 		}
 		if(empty($path[2])) {
 			$path[2] = 'index';

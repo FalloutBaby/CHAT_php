@@ -28,7 +28,7 @@ class Account extends Model
 			
         	$user->create(['user' => $this->request['post']['user'], 'password' => md5($this->request['post']['password'])]);
 			
-				echo $user;
+			return $user;
     	}
 		return true;
 	}
@@ -47,13 +47,13 @@ class Account extends Model
 				$_SESSION['user'] = $user->values['user'];
 				$_SESSION['user_name'] = $user->values['user_name'];
 				$_SESSION['user_id'] = $user->values['user_id'];
-				echo $user;
+				return $user;
 			} else {
-				echo "Неверный логин или пароль";
+				return "Неверный логин или пароль";
 			}
 		}
 	
-		echo $user;
+		return $user;
 	}
 	
 	public function showAccount()
