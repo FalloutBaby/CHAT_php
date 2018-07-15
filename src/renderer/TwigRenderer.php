@@ -19,7 +19,7 @@ class TwigRenderer
     {
         $loader = new \Twig_Loader_Filesystem($this->templateFolder);
 
-        $twig = new \Twig_Environment($loader);
+        $twig = new \Twig_Environment($loader, array('cache' => 'compilation_cache', 'auto_reload' => true));
 
         $templateInstance = $twig->loadTemplate($template . $this->templateExtension );
 
