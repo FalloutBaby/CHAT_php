@@ -27,7 +27,8 @@ class Account extends Model
 		if(!empty($this->request['post']['user']) && !empty($this->request['post']['password'])) {
 			
         	$user->create(['user' => $this->request['post']['user'], 'password' => md5($this->request['post']['password'])]);
-        	header('Location: login');
+			
+				echo $user;
     	}
 		return true;
 	}
@@ -39,20 +40,20 @@ class Account extends Model
 		
 		if(!empty($this->request['post']['user']) && !empty($this->request['post']['password'])) {
 			if(!$user->validate(['user' => $this->request['post']['user'], 'password' => md5($this->request['post']['password'])], $user->rules )) {
-				return false;
+				echo "Неверный логин или пароль";
 			}
         	$user->values = $user->getOne('user', $this->request['post']['user']);
         	if($user->values['password'] == md5($this->request['post']['password']) ) {
 				$_SESSION['user'] = $user->values['user'];
 				$_SESSION['user_name'] = $user->values['user_name'];
 				$_SESSION['user_id'] = $user->values['user_id'];
-				header('Location: personal');
+				echo $user;
 			} else {
 				echo "Неверный логин или пароль";
 			}
 		}
 	
-		return $user;
+		echo $user;
 	}
 	
 	public function showAccount()
