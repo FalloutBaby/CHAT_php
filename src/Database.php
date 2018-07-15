@@ -38,7 +38,6 @@ class Database
 	public function executeQuery($sql) {
 		$pdo = $this->getPDO();
 		$result = $pdo->query($sql);
-		var_dump($result);
 		return $result->execute();
 	}
 
@@ -63,17 +62,4 @@ class Database
 		$result = $pdo->query($sql);
 		return $result->fetchAll()[0];
 	}
-	
-	public function addSuffix($val, $suffix1, $suffix2, $suffix3) {
-	if ($val > 20) {
-		$val %= 10;
-	}
-	if ($val == 0 || ($val >= 5 && $val <= 20)) {
-		return $suffix1;
-	} else if ($val >=2 && $val <= 4) {
-		return $suffix2;
-	} else {
-		return $suffix3;
-	}
-}
 }
