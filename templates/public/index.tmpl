@@ -13,24 +13,10 @@
 
 <script type="text/javascript" src="../js/window.js"></script>
 <script>
-$(document).ready(function () {
-    text = $('#chat_input');
-    $('#submit').click(function (event) {
-		console.log(text.val());
-        conn.send(text.val());
-
-        // Очищаем поле ввода.
-        text.val('');
-
-        // Отменяем отправку формы.
-        return false;
-    });
-	
-    scroll();
-	
+$(document).ready(function () {	
 	$('.register').submit(function (event) {
 		$.post({
-			url:"../public/index/register",
+			url:"../public/register",
 			data:$(this).serialize(),
     		success:function(){
 				$('#authorise').load(document.URL +  ' #authorise');
@@ -41,37 +27,62 @@ $(document).ready(function () {
     });
 	$('.login').submit(function (event) {
 		$.post({
-			url:"../public/index/login",
+			url:"../public/login",
 			data:$(this).serialize(),
     		success:function(data){
 				console.log(data);
+				// window.location = '../public/index';
 				$('#authorise').load(document.URL +  ' #authorise');
     		}
 			});
         // Отменяем отправку формы.
         return false;
     });
+	
+    text = $('#chat_input');
+    $('#submit').click(function (event) {
+        conn.send(text.val());
+
+        // Очищаем поле ввода.
+        text.val('');
+
+        // Отменяем отправку формы.
+        return false;
+    });
+	$('#chat_input').keypress(function(e){
+        if(e.which == 13){ //Enter
+            $('#submit').click();
+        }
+    });
+    scroll();
 });
 </script>
-<div id="chat_output"></div>
 <div id="authorise">
+
 {% if account != true %}
-	<h3>Авторизуйтесь, чтобы начать писать сообщения.</h3>
-	<form  class='login' action='../public/index' method="post">
+
+<h3>Авторизуйтесь, чтобы начать писать сообщения.</h3>
+	<form  class='login' action='../public/login' method="post">
     	<input class='upload_input' type="text" name="user" placeholder="Никнейм">
     	<input class='upload_input' type="password" name="password" placeholder="Пароль">
     	<input class='menu_list_link centered' type="submit">
 	</form>
-	<h3>Если вы впервые здесь, то зарегистрируйтесь:</h3>
-	<form class='registration' action='../public/index' method="post">
+<h3>Если вы впервые здесь, то зарегистрируйтесь:</h3>
+	<form class='registration' action='../public/register' method="post">
     	<input class='upload_input' type="text" name="user" placeholder="Никнейм">
     	<input class='upload_input' type="password" name="password" placeholder="Пароль">
     	<input class='menu_list_link centered' type="submit">
 	</form>
+
 {% else %}
+
+<div id="chat_output"></div>
 	<input id="chat_input" placeholder="Введите сообщение..."/>
 	<input id="submit" type="submit"/>
+<a href='logout'>Деавторизоваться</a>
+
 {% endif %}
+
 </div>
 </body>
 </html>
