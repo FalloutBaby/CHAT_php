@@ -16,12 +16,7 @@ class IndexController extends Controller
         }
         $accountModel = new Account();
         $user = new User;
-		
-        $post_data= [
-        //    'name' => 'name from model',
-        //    'login' => 'sdfdsf'
-        ];
-		
+				
         $account = $accountModel->getAccount();
 
         $this->render('public/index', ['account' => $account,]);
