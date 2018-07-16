@@ -13,21 +13,7 @@
 
 <script type="text/javascript" src="../js/window.js"></script>
 <script>
-$(document).ready(function () {
-    text = $('#chat_input');
-    $('#submit').click(function (event) {
-		console.log(text.val());
-        conn.send(text.val());
-
-        // Очищаем поле ввода.
-        text.val('');
-
-        // Отменяем отправку формы.
-        return false;
-    });
-	
-    scroll();
-	
+$(document).ready(function () {	
 	$('.register').submit(function (event) {
 		$.post({
 			url:"../public/index/register",
@@ -45,7 +31,7 @@ $(document).ready(function () {
 			data:$(this).serialize(),
     		success:function(data){
 				console.log(data);
-				$('#authorise').load(document.URL +  ' #authorise');
+				window.location = '../public/chat';
     		}
 			});
         // Отменяем отправку формы.
@@ -55,7 +41,6 @@ $(document).ready(function () {
 </script>
 <div id="chat_output"></div>
 <div id="authorise">
-{% if account != true %}
 	<h3>Авторизуйтесь, чтобы начать писать сообщения.</h3>
 	<form  class='login' action='../public/index' method="post">
     	<input class='upload_input' type="text" name="user" placeholder="Никнейм">
@@ -68,10 +53,6 @@ $(document).ready(function () {
     	<input class='upload_input' type="password" name="password" placeholder="Пароль">
     	<input class='menu_list_link centered' type="submit">
 	</form>
-{% else %}
-	<input id="chat_input" placeholder="Введите сообщение..."/>
-	<input id="submit" type="submit"/>
-{% endif %}
 </div>
 </body>
 </html>
