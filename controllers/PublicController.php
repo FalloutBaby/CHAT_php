@@ -27,4 +27,13 @@ class PublicController extends Controller
 
         $this->render('public/index', ['account' => $account,]);
     }
+	public function actionChat()
+    {
+        $accountModel = new Account();
+		$accountModel->request = $this->requestArray();
+		
+        $account = $accountModel->registerAccount();
+		
+		echo $this->render('public/chat', ['account' => $account,] );
+	}
 }
