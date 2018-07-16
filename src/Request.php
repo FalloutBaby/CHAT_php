@@ -46,20 +46,6 @@ class Request
 		if(empty($path[2])) {
 			$path[2] = 'index';
 		}
-		// Получение инф-ии о запрошенной странице
-		
-		$page_content = file_get_contents (__DIR__ . '/../templates' . implode('/', $path) . '.tmpl');
-		
-		preg_match_all( "|<title>(.*)</title>|sUSi", $page_content, $title);
-		if (empty($title)) {
-			$title = $_SERVER['REQUEST_URI'];
-		}
-		
-		if (empty($_SESSION['views'])) {
-			$_SESSION['views'] = [];
-		}
-		
-		array_push ($_SESSION['views'], ['title' => $title[1], 'url' => strtolower($_SERVER['REQUEST_URI'])]);
 		
         $classController = $this->controllerNamespace . '\\' . ucfirst($this->controller) . 'Controller';
 		
