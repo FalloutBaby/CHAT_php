@@ -56,38 +56,9 @@ class Account extends Model
 		return $user;
 	}
 	
-	public function showAccount()
-	{
-		$this->database = new Database();
-		$user = new User();
-		
-		$user->values = $user->getOne('user', $_SESSION['user']);
-		
-		if(!empty($this->request['post']['user']) && !empty($this->request['post']['user_name'])) {
-        	$user->values = $user->update('user_id', $user->values['user_id'], $this->request['post']);
-			$_SESSION['user'] = $this->request['post']['user'];
-        	$_SESSION['user_name'] = $this->request['post']['user_name'];
-		} else if (!empty($this->request['post']['user'])) {
-        	$user->values = $user->update('user_id', $user->values['user_id'], $this->request['post']);
-        	$_SESSION['user'] = $this->request['post']['user'];
-		} else if (!empty($this->request['post']['user_name'])) {
-        	$user->values = $user->update('user_id', $user->values['user_id'], $this->request['post']);
-        	$_SESSION['user_name'] = $this->request['post']['user_name'];
-		}
-		
-		$user->values['views'] = $_SESSION['views'];
-		if (!empty($user->values['views'])) {
-			$user->values['views'] = array_reverse(array_map("unserialize",(array_unique(array_map("serialize",$user->values['views'])))));
-			
-			$user->values['views'] = array_slice($user->values['views'] , 0, 5);
-		}
-		return $user->values;
-	}
-	
 	public function accountLogout()
 	{
 		unset($_SESSION['user']);
-		header('Location: ../account');
 	}
 }
 
