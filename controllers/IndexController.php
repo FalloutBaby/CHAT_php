@@ -29,7 +29,7 @@ class IndexController extends Controller
 		
         $account = $accountModel->registerAccount();
 		
-		echo $this->render('public/index', ['account' => $account,] );
+		return $this->render('public/index', ['account' => $account,] );
 	}
 
     public function actionLogin()
@@ -39,6 +39,16 @@ class IndexController extends Controller
 
         $account = $accountModel->loginAccount();
 		
-		echo $this->render('public/index', ['account' => $account,] );
+		return $this->render('public/index', ['account' => $account,] );
     }
+	
+    public function actionLogout()
+	{
+		$accountModel = new Account();
+		$accountModel->request = $this->requestArray();
+
+        $account = $accountModel->accountLogout();
+		
+		$this->render('public/index', ['account' => $account,] );
+	}
 }

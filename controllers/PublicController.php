@@ -19,6 +19,9 @@ class PublicController extends Controller
         $user = new User;
 		
         $account = $accountModel->getAccount();
+		
+		echo " Привет, " . $_SESSION['user'] . "! ";
+		
         $this->render('public/index', ['account' => $account,]);
     }
 	
@@ -42,15 +45,6 @@ class PublicController extends Controller
 		
 		echo $this->render('public/index', ['account' => $account,] );
     }
-	public function actionChat()
-    {
-        $accountModel = new Account();
-		$accountModel->request = $this->requestArray();
-		
-        $account = $accountModel->getAccount();
-		
-		echo $this->render('public/chat', ['account' => $account,] );
-	}
 	
     public function actionLogout()
 	{
