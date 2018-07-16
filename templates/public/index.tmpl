@@ -38,21 +38,25 @@ $(document).ready(function () {
         return false;
     });
 });
-</script>
-<div id="chat_output"></div>
+</script>{% if account != true %}
 <div id="authorise">
 	<h3>Авторизуйтесь, чтобы начать писать сообщения.</h3>
-	<form  class='login' action='../public/index' method="post">
+	<form  class='login' action='../public/chat' method="post">
     	<input class='upload_input' type="text" name="user" placeholder="Никнейм">
     	<input class='upload_input' type="password" name="password" placeholder="Пароль">
     	<input class='menu_list_link centered' type="submit">
 	</form>
 	<h3>Если вы впервые здесь, то зарегистрируйтесь:</h3>
-	<form class='registration' action='../public/index' method="post">
+	<form class='registration' action='../public/chat' method="post">
     	<input class='upload_input' type="text" name="user" placeholder="Никнейм">
     	<input class='upload_input' type="password" name="password" placeholder="Пароль">
     	<input class='menu_list_link centered' type="submit">
 	</form>
 </div>
+{% else %}
+<a href='public/chat'>Начать чат</a>
+<a href='public/logout'>Деавторизоваться</a>
+<div id="chat_output"></div>
+{% endif %}
 </body>
 </html>

@@ -87,7 +87,6 @@ class Account extends Model
 	public function accountLogout()
 	{
 		unset($_SESSION['user']);
-		header('Location: ../account');
 	}
 }
 
