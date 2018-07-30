@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .user_name {
 	color: #00529B;
 	display: inline-block;
@@ -18,4 +19,26 @@
 
 body {
 	background: #efefef;
+=======
+.user_name {
+	color: #00529B;
+	display: inline-block;
+}
+
+.message_inc {
+	color: #4F8A10;
+	display: inline-block;
+}
+
+#chat_output {
+	height: 500px;
+    width: 500px;
+	background: #eeeeee;
+  	overflow-y: auto;
+	padding: 5px;
+}
+
+body {
+	background: #efefef;
+>>>>>>> origin/master
 }
